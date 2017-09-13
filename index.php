@@ -9,10 +9,6 @@
 <link rel="shortcut icon" href="icon.ico"/>
 </head>
 <body onload="isLoggedIn();">
-<!--
-1. попробовать сделать через local storage
-2. сделать версию 1-3-5 с бд(совместить с заметками)
--->
 <div class="faq">
 	<table class="faqtable">
 		<tr>
