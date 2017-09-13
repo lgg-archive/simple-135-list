@@ -8,10 +8,10 @@
 </head>
 <body>
 <div id="faq" class="faq">
-    <table class="faqtable">
+    <table class="faq-table">
         <tr>
-            <td><span class="faqhead">Что это такое?</span></td>
-            <td class="faqclose">
+            <td><span class="faq-table__head">Что это такое?</span></td>
+            <td class="faq-close">
                 <a href="#" id="btn-faq__hide">[X]</a>
             </td>
         </tr>
@@ -29,71 +29,74 @@
     </table>
 </div>
 <div id="menu" class="menu">
-    <div id="mhead">Список дел на сегодня:</div>
+    <div id="menu-head" class="menu-head">Список дел на сегодня:</div>
+    
     <div class="one">
-        <div id="whead">1 большое дело:</div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w1c" onclick="markthis('w1c','w1');"/>
+        <div class="task-head">1 большое дело:</div>
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w1c"/>
             <label for="w1c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw1"/>
-            <input type="text" class="work1" id="w1" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw1"/>
+            <input type="text" class="task-input work1" id="w1">
         </div>
     </div>
+    
     <div class="three">
-        <div id="whead">3 средних дела:</div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w31c" onclick="markthis('w31c','w31');">
+        <div class="task-head">3 средних дела:</div>
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w31c">
             <label for="w31c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw31"/>
-            <input type="text" class="work3" id="w31" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw31"/>
+            <input type="text" class="task-input work3" id="w31">
         </div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w32c" onclick="markthis('w32c','w32');">
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w32c">
             <label for="w32c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw32"/>
-            <input type="text" class="work3" id="w32" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw32"/>
+            <input type="text" class="task-input work3" id="w32">
         </div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w33c" onclick="markthis('w33c','w33');">
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w33c">
             <label for="w33c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw33"/>
-            <input type="text" class="work3" id="w33" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw33"/>
+            <input type="text" class="task-input work3" id="w33">
         </div>
     </div>
+    
     <div class="five">
-        <div id="whead">5 маленьких дел:</div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w51c" onclick="markthis('w51c','w51');">
+        <div class="task-head">5 маленьких дел:</div>
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w51c">
             <label for="w51c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw51"/>
-            <input type="text" class="work5" id="w51" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw51"/>
+            <input type="text" class="task-input work5" id="w51">
         </div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w52c" onclick="markthis('w52c','w52');">
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w52c">
             <label for="w52c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw52"/>
-            <input type="text" class="work5" id="w52" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw52"/>
+            <input type="text" class="task-input work5" id="w52">
         </div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w53c" onclick="markthis('w53c','w53');">
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w53c">
             <label for="w53c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw53"/>
-            <input type="text" class="work5" id="w53" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw53"/>
+            <input type="text" class="task-input work5" id="w53">
         </div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w54c" onclick="markthis('w54c','w54');">
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w54c">
             <label for="w54c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw54"/>
-            <input type="text" class="work5" id="w54" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw54"/>
+            <input type="text" class="task-input work5" id="w54">
         </div>
-        <div class="workline">
-            <input type="checkbox" class="check" id="w55c" onclick="markthis('w55c','w55');">
+        <div class="task-content">
+            <input type="checkbox" class="check" id="w55c">
             <label for="w55c"></label>
-            <img src="./img/redline.jpg" class="redline" id="rlw55"/>
-            <input type="text" class="work5" id="w55" OnKeyUp="savethis(this);">
+            <img src="./img/redline.jpg" class="line" id="rlw55"/>
+            <input type="text" class="task-input work5" id="w55">
         </div>
     </div>
-    <div id="mfoot">
+    <div id="menu-foot" class="menu-foot">
         <a href="#" id="btn-faq__show">Что это?</a>
     </div>
 </div>

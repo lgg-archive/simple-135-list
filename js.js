@@ -23,6 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    //input keyUp
+    runForElementsByClass("task-input", function (item) {
+       item.addEventListener("keyup", function(){
+          saveThis(this);
+       });
+    });
+
     //show/hide faq
     getElById("btn-faq__show").addEventListener("click", showFaq);
     getElById("btn-faq__hide").addEventListener("click", hideFaq);
@@ -118,6 +125,11 @@ function clearSaved(e) {
             getElById(taskId).value = getCookie(taskId);
             getElById(taskId + 'c').checked = false;
         });
+
+        //update checkboxes
+        markCheckboxes();
+
+        hideFaq();
     }
 }
 
@@ -215,6 +227,4 @@ function hideFaq(e) {
 
     getElById("menu").classList.remove("display__none");
     getElById("menu").classList.add("display__block");
-
-    // markCheckboxes();
 }
