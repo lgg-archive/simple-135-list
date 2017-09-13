@@ -1,133 +1,220 @@
+//html ids of tasks elements
+var tasksId = [
+    'w1',
+    'w31',
+    'w32',
+    'w33',
+    'w51',
+    'w52',
+    'w53',
+    'w54',
+    'w55',
+];
+
 document.addEventListener('DOMContentLoaded', function () {
+    //load saved tasks
     loadTasks();
+
+    //bind events
+    //checkboxes functionality
+    runForElementsByClass("check", function(item){
+        item.addEventListener("click", function(){
+            markThis(this.id.slice(0, -1));
+        });
+    });
+
+    //show/hide faq
+    getElById("btn-faq__show").addEventListener("click", showFaq);
+    getElById("btn-faq__hide").addEventListener("click", hideFaq);
+
+    //clear saved tasks
+    getElById("btn-reset").addEventListener("click", clearSaved);
 });
 
+/**
+ * Returns html element by id
+ * @param {string} id
+ * @returns {Element}
+ */
+function getElById(id) {
+    //returns element by its id
+    return document.getElementById(id);
+}
+
+/**
+ * Executes function for each element selected by className
+ * @param {string} className
+ * @param {function} func
+ */
+function runForElementsByClass(className, func) {
+    Array.prototype.forEach.call(document.getElementsByClassName(className), function(item, i){
+        func(item, i);
+    });
+}
+
+/**
+ * Executes function for each taskElement
+ * @param {function} func
+ */
+function eachTaskElement(func) {
+    for (var i = 0; i < tasksId.length; i++) {
+        func(tasksId[i], i);
+    }
+}
+
+/**
+ * Load tasks from cookies and updates inputs and checkboxes
+ */
 function loadTasks() {
-    $('#w1').val(getCookie("w1"));
-    $('#w31').val(getCookie("w31"));
-    $('#w32').val(getCookie("w32"));
-    $('#w33').val(getCookie("w33"));
-    $('#w51').val(getCookie("w51"));
-    $('#w52').val(getCookie("w52"));
-    $('#w53').val(getCookie("w53"));
-    $('#w54').val(getCookie("w54"));
-    $('#w55').val(getCookie("w55"));
-    markchecks();
+    //load saved tasks from cookies
+    eachTaskElement(function (taskId) {
+        getElById(taskId).value = getCookie(taskId);
+    });
+
+    //check if some tasks are done
+    markCheckboxes();
 }
 
-function getCookie(cname) {
-    var results = document.cookie.match('(^|;) ?' + cname + '=([^;]*)(;|$)');
+/**
+ * Returns cookie value by its name
+ * @param {string} name - cookies name
+ * @returns {string}
+ */
+function getCookie(name) {
+    var results = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     if (results) {
-        return (unescape(results[2]));
+        return (decodeURI(results[2]));
     } else {
-        return null;
+        return '';
     }
 }
 
-function logOut() {
-    if (confirm("”верены?")) {
+/**
+ * Updates cookies values by its name
+ * @param {string} name
+ * @param {*} val
+ */
+function updateCookie(name, val) {
+    document.cookie = name + "=; path=/; expires=-1";
+    var date = new Date(new Date().getTime() + 60 * 1000 * 60 * 72);
+    document.cookie = name + "=" + val + "; path=/; expires=" + date.toUTCString();
+}
+
+/**
+ * Clears saved tasks
+ */
+function clearSaved(e) {
+    e.preventDefault();
+
+    if (confirm("Уверены?")) {
         document.cookie = "log=; path=/; expires=-1";
-        var warr = ["w1", "w31", "w32", "w33", "w51", "w52", "w53", "w54", "w55"];
-        var chname = "";
-        var wname = "";
-        var i = 0;
-        while (i < 9) {
-            wname = warr[i];
-            chname = wname + "c";
-            document.cookie = wname + "=; path=/; expires=-1";
-            document.cookie = chname + "=; path=/; expires=-1";
-            $("#" + wname).val(getCookie(wname));
-            $("#" + chname).attr('checked', false);
-            i++;
-        }
+
+        eachTaskElement(function (taskId) {
+            //clear cookies for input and checkboxes
+            document.cookie = taskId + "=; path=/; expires=-1";
+            document.cookie = taskId + 'c' + "=; path=/; expires=-1";
+
+            //clear checkboxes and inputs
+            getElById(taskId).value = getCookie(taskId);
+            getElById(taskId + 'c').checked = false;
+        });
     }
 }
 
-function markchecks() {
-    var chechsarr = ["w1", "w31", "w32", "w33", "w51", "w52", "w53", "w54", "w55"];
-    var vcheckid = "";
-    var wtid = "";
-    var i = 0;
-    while (i < 9) {
-        vcheckid = chechsarr[i] + "c";
-        wtid = chechsarr[i];
-        if (getCookie(vcheckid) == "true") {
-            $("#" + vcheckid).attr('checked', true);
-            markthis(vcheckid, wtid);
+/**
+ * Update checkboxes
+ */
+function markCheckboxes() {
+    eachTaskElement(function (taskId) {
+        //check if we need to set checkbox to checked
+        if (getCookie(taskId + 'c') == "true") {
+            getElById(taskId + 'c').checked = true;
+
+            //update view for checked task
+            markThis(taskId);
         }
-        i++;
+    });
+}
+
+/**
+ * Check if we need to change checkbox view
+ * @param {string} taskId
+ */
+function markThis(taskId) {
+    var checkboxStatus = getElById(taskId + 'c').checked;
+    var imgId = "rl" + taskId;
+    var textWidth = getElById(taskId).value.length;
+    var textY = getElById(taskId).offsetTop;
+
+    //update cookies
+    updateCookie(taskId + 'c', checkboxStatus);
+
+    if (checkboxStatus) {
+        //get TextWidth coefficients
+        if (taskId == "w1") {
+            textY = textY + 18 + "px";
+            textWidth = textWidth * 13.5 + "px";
+        } else if (taskId == "w31" || taskId == "w32" || taskId == "w33") {
+            textY = textY + 15 + "px";
+            textWidth = textWidth * 10 + "px";
+        } else {
+            textY = textY + 12 + "px";
+            textWidth = textWidth * 7 + "px";
+        }
+
+        getElById(taskId).setAttribute("unselectable", "on");
+        getElById(taskId).setAttribute("readonly", "on");
+        getElById(taskId).classList.add("no-select");
+
+        getElById(imgId).style.top = textY;
+        getElById(imgId).style.width = textWidth;
+        getElById(imgId).style.display = "inline";
+    } else {
+        getElById(taskId).setAttribute("unselectable", "off");
+        getElById(taskId).setAttribute("readonly", "off");
+        getElById(taskId).classList.remove("no-select");
+
+        getElById(imgId).style.display = "none";
     }
 }
 
-function savethis(el) {
+/**
+ * Updates cookies by real-time typing
+ * @param el
+ */
+function saveThis(el) {
     var kc = event.keyCode;
     if (kc == 67 || kc == 86 || kc == 65 || kc == 32 || kc == 9 || kc == 13 || kc == 16 || kc == 17 || kc == 18 || kc == 19 || kc == 20 || kc == 27 || kc == 33 || kc == 34 || kc == 35 || kc == 36 || kc == 37 || kc == 38 || kc == 39 || kc == 40 || kc == 45 || kc == 46) {
 
     } else {
-        var wid = el.id;
-        var wtext = $(el).val();
-        updateCookie(wid, wtext);
+        updateCookie(el.id, el.value);
     }
 }
 
-function markthis(el, wtid) {
-    var cid = el;
-    var cstatus = $("#" + cid).is(':checked');
-    var thisimgid = $("#" + cid).nextAll("img").attr("id");
-    var textWidth = $("#" + cid).nextAll("input").val().length;
-    var textY = $("#" + cid).nextAll("input").position().top;
-    if (wtid == "w1") {
-        textY = textY + 18 + "px";
-        textWidth = textWidth * 13.5 + "px";
-    } else if (wtid == "w31" || wtid == "w32" || wtid == "w33") {
-        textY = textY + 15 + "px";
-        textWidth = textWidth * 10 + "px";
-    } else {
-        textY = textY + 12 + "px";
-        textWidth = textWidth * 7 + "px";
-    }
-    if (cstatus) {
-        updateCookie(cid, cstatus);
-        $("#" + wtid).attr("unselectable", "on");
-        $("#" + wtid).attr("readonly", "on");
-        $("#" + wtid).css({"text-decoration": "line-through"});
-        $("#" + wtid).css({"-webkit-user-select": "none"});
-        $("#" + wtid).css({"-moz-user-select": "none"});
-        $("#" + wtid).css({"-ms-user-select": "none"});
-        $("#" + wtid).css({"-o-user-select": "none"});
-        $("#" + thisimgid).css({"top": textY});
-        $("#" + thisimgid).css({"display": "inline"});
-        $("#" + thisimgid).css({"width": textWidth});
-    } else {
-        updateCookie(cid, cstatus);
-        $("#" + wtid).removeAttr("unselectable");
-        $("#" + wtid).removeAttr("readonly");
-        $("#" + wtid).css({"text-decoration": "none"});
-        $("#" + wtid).css({"-webkit-user-select": "auto"});
-        $("#" + wtid).css({"-moz-user-select": "auto"});
-        $("#" + wtid).css({"-ms-user-select": "auto"});
-        $("#" + wtid).css({"-o-user-select": "auto"});
-        $("#" + thisimgid).css({"display": "none"});
-    }
+/**
+ * Shows FAQ modal
+ */
+function showFaq(e) {
+    e.preventDefault();
+
+    getElById("faq").classList.remove("display__none");
+    getElById("faq").classList.add("display__block");
+
+    getElById("menu").classList.remove("display__block");
+    getElById("menu").classList.add("display__none");
 }
 
-function updateCookie(name, cval) {
-    document.cookie = name + "=; path=/; expires=-1";
-    var date = new Date(new Date().getTime() + 60 * 1000 * 60 * 72);
-    document.cookie = name + "=" + cval + "; path=/; expires=" + date.toUTCString();
-}
+/**
+ * Hides FAQ modal
+ */
+function hideFaq(e) {
+    e.preventDefault();
 
-function showc() {
-    alert(document.cookie);
-}
+    getElById("faq").classList.remove("display__block");
+    getElById("faq").classList.add("display__none");
 
-function showFaq() {
-    $(".faq").css({"display": "block"});
-    $(".menu").css({"display": "none"});
-}
+    getElById("menu").classList.remove("display__none");
+    getElById("menu").classList.add("display__block");
 
-function hideFaq() {
-    $(".faq").css({"display": "none"});
-    $(".menu").css({"display": "block"});
-    markchecks();
+    // markCheckboxes();
 }
