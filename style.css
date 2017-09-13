@@ -1,0 +1,185 @@
+body{
+	background: url(bg.jpg);
+}
+a{
+	color: #3861B2;
+}
+/* Меню */
+.menu{
+	background-color: white;
+	position: absolute;
+	padding: 10px 5px 20px 5px;
+	left: 30%;
+	top: 10%;
+	width: 40%;
+	//height: 60%;
+	text-align: center;
+	border: solid 1px;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+	-webkit-box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.75);
+}
+/* Элементы меню */
+#mhead{
+	font-size: 24px;
+	text-decoration: underline;
+	font-style: italic;
+	font-weight: bolder;
+	padding: 0px 0px 10px 0px;
+}
+#whead{
+	text-align: left;
+	padding: 20px 0px 0px 10px;
+	font-weight: bolder;
+	!text-decoration: underline;
+	!font-style: italic;
+}
+#mfoot{
+	padding: 10px 0px 0px 0px;
+}
+/* Заголовки */
+.one{
+	font-size: 22px;
+}
+.three{
+	font-size: 18px;
+}
+.five{
+	font-size: 14px;
+}
+.workline{
+	display: block !important;
+}
+/* Дизайн задачек */
+.work1{
+	text-align: left;
+	display: inline-block;
+	background: url(line.png) bottom repeat-x;
+	padding: 5px 0px 10px 0px;
+	margin: 0px 0px 0px 0px;
+	width: 90%;
+	max-width: 90%;
+	max-height: 100px;
+	border: none;
+	font-size: 24px;
+}
+.work1:focus{
+	outline: 0px solid transparent;
+	border: none;
+}
+.work3{
+	color: black;
+	text-align: left;
+	display: inline-block;
+	background: url(line.png) bottom repeat-x;
+	padding: 5px 0px 10px 0px;
+	margin: 0px 0px 0px 0px;
+	width: 90%;
+	max-width: 90%;
+	max-height: 100px;
+	border: none;
+	font-size: 18px;
+}
+.work3:focus{
+	outline: 0px solid transparent;
+	border: none;
+}
+.work5{
+	color: black;
+	text-align: left;
+	display: inline-block;
+	background: url(line.png) bottom repeat-x;
+	padding: 5px 0px 10px 0px;
+	margin: 0px 0px 0px 0px;
+	width: 90%;
+	max-width: 90%;
+	max-height: 100px;
+	border: none;
+	font-size: 12px;
+}
+.work5:focus{
+	outline: 0px solid transparent;
+	border: none;
+}
+/* Зачеркивание текста */
+.redline{
+	pointer-events: none;
+	display: none;
+	position: absolute;
+	top: 64px;
+	left: 52px;
+	height: 3px;
+	max-height: 3px;
+}
+/* Свои чекбоксы */
+input[type="checkbox"]{
+	display:none;            
+}
+input[type="checkbox"] + label{
+	cursor: pointer;
+}
+input[type="checkbox"] + label::before{
+	content: "";
+	display: inline-block;
+	height: 32px;
+	width: 29px;
+	padding: 0px 0px 0px 0px;
+	margin: -5px 0px -10px 0px;
+	background-image: url(checkno.jpg);
+	background-repeat: no-repeat;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;  
+}
+input[type="checkbox"]:checked + label::before {
+	background: url(checkyes.jpg) no-repeat;
+}
+.check{
+	background: url(checkno.jpg) no-repeat;
+}
+.check:checked{
+	background: url(checkyes.jpg) no-repeat;
+}
+.check:focus{
+	outline: 0px solid transparent;
+}
+/* Дизайн окна "что это" */
+.faq{
+	background-color: white;
+	position: absolute;
+	display: none;
+	left: 30%;
+	top: 20%;
+	width: 40%;
+	border: solid 1px;
+	padding: 20px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	-webkit-box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.75);
+}
+.faqhead{
+	display: block;
+	text-align: left;
+	font-weight: bolder;
+	font-size: 18px;
+}
+.answer{
+	text-align: left;
+	text-indent: 30px;
+}
+.faqclose{
+	text-align: right;
+}
+.faqclose a{
+	text-decoration: none;
+}
+.faqtable{
+	width: 100%;
+	text-align: right;
+}
