@@ -212,3 +212,19 @@ input[type="checkbox"]:checked + label::before{
     width: 100%;
     text-align: right;
 }
+
+.no-select{
+    text-decoration: line-through;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.display__block{
+    display: block !important;
+}
+
+.display__none{
+    display: none !important;
+}
