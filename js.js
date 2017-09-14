@@ -156,7 +156,7 @@ function markThis(taskId) {
     var checkboxStatus = getElById(taskId + 'c').checked;
     var imgId = "rl" + taskId;
     var textWidth = getElById(taskId).value.length;
-    var textY = getElById(taskId).offsetTop;
+    var textY;
 
     //update cookies
     updateCookie(taskId + 'c', checkboxStatus);
@@ -164,13 +164,13 @@ function markThis(taskId) {
     if (checkboxStatus) {
         //get TextWidth coefficients
         if (taskId == "w1") {
-            textY = textY + 18 + "px";
+            textY = 18 + "px";
             textWidth = textWidth * 13.5 + "px";
         } else if (taskId == "w31" || taskId == "w32" || taskId == "w33") {
-            textY = textY + 15 + "px";
+            textY = 15 + "px";
             textWidth = textWidth * 10 + "px";
         } else {
-            textY = textY + 12 + "px";
+            textY = 12 + "px";
             textWidth = textWidth * 7 + "px";
         }
 

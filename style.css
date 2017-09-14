@@ -62,6 +62,7 @@ a{
 
 .task-content{
     display: block !important;
+    position: relative;
 }
 
 /* Дизайн задачек */
@@ -126,8 +127,8 @@ a{
     pointer-events: none;
     display: none;
     position: absolute;
-    top: 64px;
-    left: 52px;
+    /*top: 64px;*/
+    /*left: 52px;*/
     height: 3px;
     max-height: 3px;
 }
