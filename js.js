@@ -17,17 +17,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //bind events
     //checkboxes functionality
-    runForElementsByClass("check", function(item){
-        item.addEventListener("click", function(){
+    runForElementsByClass("check", function (item) {
+        item.addEventListener("click", function () {
             markThis(this.id.slice(0, -1));
         });
     });
 
     //input keyUp
     runForElementsByClass("task-input", function (item) {
-       item.addEventListener("keyup", function(){
-          saveThis(this);
-       });
+        item.addEventListener("keyup", function () {
+            saveThis(this);
+        });
     });
 
     //show/hide faq
@@ -54,7 +54,7 @@ function getElById(id) {
  * @param {function} func
  */
 function runForElementsByClass(className, func) {
-    Array.prototype.forEach.call(document.getElementsByClassName(className), function(item, i){
+    Array.prototype.forEach.call(document.getElementsByClassName(className), function (item, i) {
         func(item, i);
     });
 }
@@ -198,13 +198,13 @@ function saveThis(el) {
     updateCookie(el.id, el.value);
 
     /*
-    var kc = event.keyCode;
-    if (kc == 67 || kc == 86 || kc == 65 || kc == 32 || kc == 9 || kc == 13 || kc == 16 || kc == 17 || kc == 18 || kc == 19 || kc == 20 || kc == 27 || kc == 33 || kc == 34 || kc == 35 || kc == 36 || kc == 37 || kc == 38 || kc == 39 || kc == 40 || kc == 45 || kc == 46) {
+     var kc = event.keyCode;
+     if (kc == 67 || kc == 86 || kc == 65 || kc == 32 || kc == 9 || kc == 13 || kc == 16 || kc == 17 || kc == 18 || kc == 19 || kc == 20 || kc == 27 || kc == 33 || kc == 34 || kc == 35 || kc == 36 || kc == 37 || kc == 38 || kc == 39 || kc == 40 || kc == 45 || kc == 46) {
 
-    } else {
-        updateCookie(el.id, el.value);
-    }
-    */
+     } else {
+     updateCookie(el.id, el.value);
+     }
+     */
 }
 
 /**
@@ -224,7 +224,9 @@ function showFaq(e) {
  * Hides FAQ modal
  */
 function hideFaq(e) {
-    e.preventDefault();
+    if (e) {
+        e.preventDefault();
+    }
 
     getElById("faq").classList.remove("display__block");
     getElById("faq").classList.add("display__none");
