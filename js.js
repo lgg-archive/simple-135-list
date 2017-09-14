@@ -195,12 +195,16 @@ function markThis(taskId) {
  * @param el
  */
 function saveThis(el) {
+    updateCookie(el.id, el.value);
+
+    /*
     var kc = event.keyCode;
     if (kc == 67 || kc == 86 || kc == 65 || kc == 32 || kc == 9 || kc == 13 || kc == 16 || kc == 17 || kc == 18 || kc == 19 || kc == 20 || kc == 27 || kc == 33 || kc == 34 || kc == 35 || kc == 36 || kc == 37 || kc == 38 || kc == 39 || kc == 40 || kc == 45 || kc == 46) {
 
     } else {
         updateCookie(el.id, el.value);
     }
+    */
 }
 
 /**
