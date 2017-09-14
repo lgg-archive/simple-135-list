@@ -182,8 +182,8 @@ function markThis(taskId) {
         getElById(imgId).style.width = textWidth;
         getElById(imgId).style.display = "inline";
     } else {
-        getElById(taskId).setAttribute("unselectable", "off");
-        getElById(taskId).setAttribute("readonly", "off");
+        getElById(taskId).removeAttribute("unselectable");
+        getElById(taskId).removeAttribute("readonly");
         getElById(taskId).classList.remove("no-select");
 
         getElById(imgId).style.display = "none";
