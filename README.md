@@ -7,9 +7,8 @@
 
 ## ToDo
 
-* clear code
+* *parse CTRL+V and if /newline/ exists paste as next task*
 * add adaptive for mobiles
-* update js code
 * add usage of Local Storage
 * add 1-3-5 version with auth/DB connection/Telegram notes integration
 
