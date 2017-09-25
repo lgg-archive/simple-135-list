@@ -103,7 +103,7 @@ function getCookie(name) {
  */
 function updateCookie(name, val) {
     document.cookie = name + "=; path=/; expires=-1";
-    var date = new Date(new Date().getTime() + 60 * 1000 * 60 * 72);
+    var date = new Date(new Date().getTime() + 60 * 1000 * 60 * 24 * 3650);
     document.cookie = name + "=" + val + "; path=/; expires=" + date.toUTCString();
 }
 
