@@ -36,6 +36,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //clear saved tasks
     getElById("btn-reset").addEventListener("click", clearSaved);
+
+    /*
+    //add listener for cookies change
+    var checkCookie = function () {
+        var lastCookie = document.cookie; // 'static' memory between function calls
+
+        return function () {
+            var currentCookie = document.cookie;
+            if (currentCookie != lastCookie) {
+                lastCookie = currentCookie; // store latest cookie
+
+                loadTasks();
+            }
+        };
+    }();
+    window.setInterval(checkCookie, 1000); // run every 1 sec
+    */
 });
 
 /**
